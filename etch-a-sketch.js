@@ -16,4 +16,16 @@ function createBoard(size) {
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
+    //create number of div to store size x size, amd look through every divs.
+    //make div exit on screen
+
+    // div in columns and rows.
+    let numDiv = size * size;
+
+    for (let i = 0; i < numDiv; i++);
+    // to insert element using insertAdjacentElement()
+        let div = document.createElement("div");
+        div.style.backgroundColor = "gray"; // add color to the div
+        board.insertAdjacentElement("beforeend", div);
+
 }

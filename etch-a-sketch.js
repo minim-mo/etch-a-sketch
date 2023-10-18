@@ -1,5 +1,7 @@
 console.log("`Let's build an awesome project!!!`");
 
+//set global variable for click
+let click = false;
 //set a global variable for color as black(default color)
 let color = "black";
 
@@ -8,6 +10,21 @@ let color = "black";
 document.addEventListener("DOMContentLoaded", function() {
     createBoard(16); //default set at 16
     console.log("hello!")
+
+   document.querySelector("body").addEventListener("click", function(e){
+    // check if it's a button or not.
+    if (e.target.tagname != "BUTTON") {
+        // if  click is TRUE = !true = false then we're going to click to be able to start drawing on the color that got pick(clicked button).
+        click = !click;
+        let draw = document.querySelector("#draw");
+        if (click) {
+            draw.innerHTML = "Enjoy drawing! select color button for more fun!"
+        }
+        else {
+            draw.innerHTML = "Click anywhere to start drawing"
+        }
+    }
+   });
 
     let btn_popup = document.querySelector("#popup");
     //if user click the button that will tricker the function that the size of the board will call the function getSize();
@@ -43,7 +60,7 @@ function createBoard(size) {
         //     div.style.backgroundColor = "black";
         // });
         board.insertAdjacentElement("beforeend", div);
-        console.log(div)
+    
     }
      
 }   
@@ -70,15 +87,22 @@ function getSize() {
 }
 
 function colorDiv() {
-    //check color 
+    if(click) {
     if(color == "random"){
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     }
     else {
         this.style.backgroundColor = "black";
     }
+    }
+
 }
 
 function setColor(colorChoice) {
      color = colorChoice;
+}
+
+function resetGame() {
+    let divs = document.querySelectorAll("div");
+    divs.forEach((div) => div.style.backgroundColor = "white");
 }

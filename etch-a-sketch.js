@@ -1,5 +1,8 @@
 console.log("`Let's build an awesome project!!!`");
 
+//set a global variable for color as black(default color)
+let color = "black";
+
 // add 64x64 in grid
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -23,17 +26,24 @@ function createBoard(size) {
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
-    //create number of div to store size x size, amd look through every divs.
+    //create number of div to store size x size, amd look through every div.
     //make div exit on screen
 
     // div in columns and rows.
-    let numDiv = size * size;
+    let numDivs = size * size;
 
-    for (let i = 0; i < numDiv; i++); {
+    for (let i = 0; i < numDivs; i++) {
         // to insert element using insertAdjacentElement()
         let div = document.createElement("div");
-        div.style.backgroundColor = "gray"; // add color to the div
+        // div.style.backgroundColor = "gray"; // add color to the div to test color
+        // add hover effect when mouse hovering. || drawing function
+        // adding colorDiv function for select different colors.
+        div.addEventListener("mouseover", colorDiv);
+        // function() {
+        //     div.style.backgroundColor = "black";
+        // });
         board.insertAdjacentElement("beforeend", div);
+        console.log(div)
     }
      
 }   
@@ -57,4 +67,18 @@ function getSize() {
         return userChoice;
     }
     console.log(message);
+}
+
+function colorDiv() {
+    //check color 
+    if(color == "random"){
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+    }
+    else {
+        this.style.backgroundColor = "black";
+    }
+}
+
+function setColor(colorChoice) {
+     color = colorChoice;
 }

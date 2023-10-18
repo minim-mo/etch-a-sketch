@@ -28,7 +28,7 @@ body {
 }
 
 .board {
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
     border: 3px solid gray;
     border-radius: 5px;
     width: 500px;
